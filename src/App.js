@@ -1,24 +1,20 @@
-import React, { Component, useState } from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
-function EditableTable(){
-  const [dragging, setDragging] = useState(false);
-  const [listItems, setListItems] = useState([0, 1, 2]);
+function EditableTable() {
+  let cpListItems = ["row 1", "row 2", "row 3", "row 4", "row 5"];
 
-  const colors = ['red', 'green', 'blue'];
-
-  function onDrag(){
-    setDragging(true);
-
-  }
-
-  function onDrop(){
-    setDragging(false);
-  }
-
-  function whileDragging(){
-
-  }
+  const [listItems, setListItems] = useState(cpListItems);
+  let colors = ['red', 'green', 'blue', 'orange', 'lightblue'];
+  const [a, setA] = useState(0);
+  const [mouseDown, setMouseDown] = useState(false);
+  const [itemOnHoldStyle, setItemOnHoldStyle] = useState({
+    position: 'absolute',
+    background: 'yellow',
+    opacity: 0.3,
+    display: 'none',
+    pointerEvents: 'none'
+  });
 
   function getStyle(i) {
     return {
@@ -26,32 +22,86 @@ function EditableTable(){
     };
   }
 
-  function startDragging(e) {
-    e.preventDefault();
-    console.log(e);
+  function mouseMoving(e) {
+    if (mouseDown) {
+      setItemOnHoldStyle({
+        position: 'absolute',
+        background: 'yellow',
+        top: e.nativeEvent.clientY - e.nativeEvent.offsetY,
+        left: e.nativeEvent.clientX - e.nativeEvent.offsetX,
+        opacity: 0.3,
+        display: 'block',
+        pointerEvents: 'none'
+      });
+      updateRows(e);
+    }
+  }
+
+
+  function updateRows(e) {
+    const b = parseInt(e.nativeEvent.target.id.replace('row',''));
+    const isDown = a < b;
+
+    let start = a;
+    let end = b;
+
+    let temp = cpListItems[start];
+    if (isDown) {
+      for (let i = start; i < end; i++) {
+        cpListItems[i] = cpListItems[i + 1];
+      }
+    } else {
+      for (let i = start; i > end; i--) {
+        cpListItems[i] = cpListItems[i - 1]
+      }
+    }
+
+    cpListItems[end] = temp;
+    setListItems(cpListItems);
+  }
+
+  function mousePressed(e) {
+    setMouseDown(true);
+    const value = e.nativeEvent.target.innerHTML;
+    let itemOnHold = document.querySelector(".item-on-hold");
+    itemOnHold.innerHTML = value;
+    setA(parseInt(e.nativeEvent.target.id.replace("row","")));
+  }
+
+  function mouseUp() {
+    setMouseDown(false);
+    setItemOnHoldStyle({
+      position: 'absolute',
+      background: 'yellow',
+      opacity: 0.3,
+      display: 'none',
+      pointerEvents: 'none'
+    });
+    console.log("Mouse up");
   }
 
   return (
     <div className="table">
-      {listItems.map(listItem => {
-       return <div key={listItem} onDragStart={startDragging} draggable="true" id={`row${listItem}`} style={getStyle(listItem)}></div>;
-      })}
+      {
+        listItems.map((item, i) => { 
+          return <div 
+            onMouseDown={mousePressed} 
+            onMouseUp={mouseUp}
+            onMouseMove={mouseMoving}
+            key={i}
+            id={`row${i}`}
+            style={getStyle(i)}>{item}</div>; 
+        })
+      }
+      <div className="item-on-hold" style={itemOnHoldStyle}></div>
     </div>
   );
-
 }
 
-class App extends Component {
-
-
-
-  render() {
-    return (
-      <div className="App">
-        <EditableTable />
-      </div>
-    );
-  }
+function App() {
+  return ( 
+    <EditableTable></EditableTable>
+  );
 }
 
 export default App;
