@@ -23,11 +23,23 @@
   to { transform: rotate(360deg); }
 }
 
-.table > div {
+.editable-table {
+  position: absolute;
   width: 500px;
-  height: 50px;
+  height: 100%;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
-.item-on-hold {
-  text-align: center;
+.editable-table:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.row {
+  width: 100%;
+  height: 100px;
 }
