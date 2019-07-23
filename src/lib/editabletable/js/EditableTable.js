@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/EditableTable.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 function DraggableRow(props) {
     const [currentStyle, setCurrentStyle] = useState({

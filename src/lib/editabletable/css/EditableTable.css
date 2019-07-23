@@ -18,3 +18,9 @@
     margin: 10px;
     flex: 1;
 }
+
+.et-delete {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
