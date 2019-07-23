@@ -1,0 +1,38 @@
+.editable-table {
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .header-list {
+            display: flex;
+            flex: 15;
+            justify-content: space-evenly;
+
+            .header-item {
+                display: flex;
+                align-items: center;
+                transition: width 5s linear forwards;
+
+                .name {
+                    flex: 9;
+                }
+
+                .hide {
+                    flex: 1;
+                    font-size: 12px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .burger {
+            flex: 1;
+            min-width: 50px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

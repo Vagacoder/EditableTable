@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import EditableTable from './lib/editabletable/js/EditableTable';
-import { DataRenderer, HeaderRenderer } from './lib/bioconference/js/BioConference'
+
+import EditableTable from './EditableTable';
 
 
 const biologyConference = {
+  show: [true, true, true, true],
   headers: ["image", "name", "date", 'end date'],
   data: [
     {
@@ -49,12 +50,7 @@ const biologyConference = {
 function App() {
   return (
     <div>
-      <EditableTable 
-        data={biologyConference.data} 
-        headers={biologyConference.headers}
-        headerRenderer={HeaderRenderer}
-        dataRenderer={DataRenderer}
-      ></EditableTable>
+      <EditableTable shownItems={biologyConference.show} headerItems={biologyConference.headers}></EditableTable>
     </div>
   );
 }
