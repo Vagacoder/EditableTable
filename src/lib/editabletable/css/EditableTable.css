@@ -19,8 +19,7 @@
     flex: 1;
 }
 
-.et-delete {
-    display: flex;
-    align-items: center;
-    height: 100%;
+.et-action-btn {
+    margin: 20px;
+    cursor: pointer;
 }

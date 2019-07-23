@@ -45,10 +45,15 @@ const biologyConference = {
   ]
 };
 
-function BiologyConferenceHeader(props) {
+function BiologyConferenceHeader(props, actions = []) {
 
   return (
     <div className="bio-conf-header">
+      {
+        actions.map(action=> {
+          return action;
+        })
+      }
       <span className="bio-conf-item">{props[0]}</span>
       <span className="bio-conf-item">{props[1]}</span>
       <span className="bio-conf-item">{props[2]}</span>
@@ -57,9 +62,14 @@ function BiologyConferenceHeader(props) {
   );
 }
 
-function BiologyConferenceData(props) {
+function BiologyConferenceData(props, actions = []) {
   return (
     <div className="bio-conf-data">
+      {
+        actions.map(action=> {
+          return action;
+        })
+      }
       <span className="bio-conf-item">
         <img src={props.imgUrl} alt={props.name}></img>
       </span>
