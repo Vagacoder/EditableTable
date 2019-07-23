@@ -188,47 +188,53 @@ function EditableTable(props) {
     }
 
     useEffect(() => {
-        if (!startIndex && !endIndex)
+        if ((!startIndex && !endIndex) && (startIndex !== undefined && endIndex !== undefined))   
             return;
-        const start = startIndex;
-        const end = endIndex;
-        const temp = currentRowOrder[start];
-        if (start < end) {
-            for (let i = start; i < end; i++) {
-                currentRowOrder[i] = currentRowOrder[i + 1];
+        else {
+            const start = startIndex;
+            const end = endIndex;
+            const temp = currentRowOrder[start];
+            if (start < end) {
+                for (let i = start; i < end; i++) {
+                    currentRowOrder[i] = currentRowOrder[i + 1];
+                }
             }
-        }
-        else if (start > end) {
-            for (let i = start; i > end; i--) {
-                currentRowOrder[i] = currentRowOrder[i - 1];
+            else if (start > end) {
+                for (let i = start; i > end; i--) {
+                    currentRowOrder[i] = currentRowOrder[i - 1];
+                }
             }
+            currentRowOrder[end] = temp;
+            let newRowOrder = [];
+            currentRowOrder.forEach(id => {
+                newRowOrder.push(document.getElementById(`${id}`));
+            });
+    
+            let editableTable = document.querySelector(".editable-table");
+            editableTable.innerHTML = "";
+            console.log(`start index: ${startIndex}`);
+            console.log(`end index: ${endIndex}`);
+            newRowOrder.forEach(row => {
+                editableTable.appendChild(row);
+            });
+    
+            editableTable = document.querySelector(".editable-table");
+            let newRows = editableTable.children;
+            currentRowOrder = [];
+            for (let i = 0; i < newRows.length; i++) {
+                newRows[i].setAttribute("id", `${i}`);
+                currentRowOrder.push(i);
+            }
+            setStartIndex(endIndex ? endIndex : startIndex);
         }
-        currentRowOrder[end] = temp;
-        let newRowOrder = [];
-        currentRowOrder.forEach(id => {
-            newRowOrder.push(document.getElementById(`${id}`));
-        });
 
-        let editableTable = document.querySelector(".editable-table");
-        editableTable.innerHTML = "";
-        newRowOrder.forEach(row => {
-            editableTable.appendChild(row);
-        });
-
-        editableTable = document.querySelector(".editable-table");
-        let newRows = editableTable.children;
-        for (let i = 0; i < newRows.length; i++) {
-            newRows[i].setAttribute("id", `${i}`);
-        }
-        currentRowOrder = [0, 1, 2];
-        setStartIndex(endIndex ? endIndex : startIndex);
     });
 
     const deleteItem = (i) => {
         data.splice(i, 1);
         setData(data.slice());
     }
-    
+
     return (
         <div>
             {props.headerRenderer(props.headers, [<div key={0} style={{width: '56px'}}></div>])}

@@ -1,0 +1,20 @@
+.bio-conf-header {
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: space-evenly;
+    height: 50px;
+    align-items: center;
+}
+
+.bio-conf-data {
+    display: flex;
+    justify-content: space-evenly;
+    justify-items: space-evenly;
+    align-items: center;
+}
+
+.bio-conf-item {
+    text-align: center;
+    margin: 10px;
+    flex: 1;
+}

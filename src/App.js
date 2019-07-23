@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import EditableTable from './lib/editabletable/js/EditableTable';
+import { DataRenderer, HeaderRenderer } from './lib/bioconference/js/BioConference'
 
 
 const biologyConference = {
@@ -45,49 +46,14 @@ const biologyConference = {
   ]
 };
 
-function BiologyConferenceHeader(props, actions = []) {
-
-  return (
-    <div className="bio-conf-header">
-      {
-        actions.map(action=> {
-          return action;
-        })
-      }
-      <span className="bio-conf-item">{props[0]}</span>
-      <span className="bio-conf-item">{props[1]}</span>
-      <span className="bio-conf-item">{props[2]}</span>
-      <span className="bio-conf-item">{props[3]}</span>
-    </div>
-  );
-}
-
-function BiologyConferenceData(props, actions = []) {
-  return (
-    <div className="bio-conf-data">
-      {
-        actions.map(action=> {
-          return action;
-        })
-      }
-      <span className="bio-conf-item">
-        <img src={props.imgUrl} alt={props.name}></img>
-      </span>
-      <span className="bio-conf-item">{props.name}</span>
-      <span className="bio-conf-item">{props.date}</span>
-      <span className="bio-conf-item">{props.endDate}</span>
-    </div>
-  );
-}
-
 function App() {
   return (
     <div>
       <EditableTable 
         data={biologyConference.data} 
         headers={biologyConference.headers}
-        headerRenderer={BiologyConferenceHeader}
-        dataRenderer={BiologyConferenceData}
+        headerRenderer={HeaderRenderer}
+        dataRenderer={DataRenderer}
       ></EditableTable>
     </div>
   );
