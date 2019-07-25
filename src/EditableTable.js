@@ -40,7 +40,7 @@ function Table(props) {
 			{
 				props.rowOrder.map((i, index) => {
 					return <TableItem 
-						index={i} 
+						index={index} 
 						key={index}
 
 						prevEndIndex={props.prevEndIndex}
@@ -49,6 +49,7 @@ function Table(props) {
 						rowOrder={props.rowOrder}
 						setRowOrder={props.setRowOrder}
 						startIndex={props.startIndex}
+
 						endIndex={props.endIndex}
 						setStartIndex={props.setStartIndex}
 						setEndIndex={props.setEndIndex}
@@ -61,6 +62,8 @@ function Table(props) {
 }
 
 function TableItem(props) {
+	const [style, setStyle] = useState({});
+
 	const handleDragStart = (e) => {
 		const i = parseInt(e.nativeEvent.target.id);
 		props.setStartIndex(i);
@@ -69,15 +72,15 @@ function TableItem(props) {
 
 	const handleDragOver = (e) => {
 		const targetId = parseInt(e.nativeEvent.target.id);
+
 		if (isNaN(targetId))
 			return;
 
 		props.setEndIndex(targetId);
-		console.log('start index',  props.startIndex);
-		console.log('end index',  props.endIndex);
 
-		if (props.endIndex != null && 
-			props.startIndex != null) {
+		if (props.endIndex !== null && 
+			props.startIndex !== null &&
+			props.prevEndIndex !== props.endIndex) {
 			let rowOrder = props.rowOrder;
 			let temp = rowOrder[props.startIndex];
 			if (props.startIndex < props.endIndex) {
@@ -90,17 +93,26 @@ function TableItem(props) {
 				}
 			}
 			rowOrder[props.endIndex] = temp;
+
 			props.setRowOrder(rowOrder.slice());
-			console.log(props.rowOrder);
+			props.setPrevEndIndex(props.endIndex);
+			props.setStartIndex(props.endIndex);
 		}
 
+		setStyle({ background: 'lightgrey '});
+	}
+
+	const handleDragLeave = () => {
+		setStyle( {} );
 	}
 
 	return (
 		<div id={`${props.index}`} 
+			style={style}
 			draggable="true" 
 			className="table-item" 
-			onDragStart={handleDragStart} 
+			onDragStart={handleDragStart}
+			onDragLeave={handleDragLeave}
 			onDragOver={handleDragOver}>
 			{
 				props.rowItem.map((item, i) => {
