@@ -3,15 +3,38 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   height: 50px;
 }
 
-.editable-table .headers .item {
-  min-width: 100px;
-  text-justify: center;
+.editable-table .headers .expand-items {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  min-width: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.editable-table .headers .items {
+  -webkit-box-flex: 14;
+      -ms-flex: 14;
+          flex: 14;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .editable-table .table {
@@ -22,24 +45,53 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
   -webkit-box-shadow: 2px 2px 5px lightgrey;
           box-shadow: 2px 2px 5px lightgrey;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.editable-table .table .table-item .item {
+.editable-table .table .table-item .items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 14;
+      -ms-flex: 14;
+          flex: 14;
+}
+
+.editable-table .table .table-item .items .item {
   min-width: 100px;
   text-justify: center;
 }
 
-.editable-table .table .table-item .item .tbl-itm-img {
+.editable-table .table .table-item .items .item .tbl-itm-img {
   margin: 10px;
+}
+
+.editable-table .table .table-item .action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.editable-table .table .table-item .action .action-btn {
+  height: 16px;
+  display: block;
+  margin: auto;
 }
 /*# sourceMappingURL=EditableTable.css.map */

@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import './EditableTable.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowsAltH, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
 
 function Headers(props) {
 	return (
 		<div className="headers">
-		 	{
-				props.headers.map((header, i) => {
-					return <HeaderItem 
-						key={i}
-						header={header} 
-						index={i} 
-						setShownItems={props.setShownItems}
-						shownItems={props.shownItems}
-					></HeaderItem>
-				})
-			}
+			<div className="expand-items">
+				<FontAwesomeIcon icon={faArrowsAltH}></FontAwesomeIcon>
+			</div>
+			<div className="items">
+				{
+					props.headers.map((header, i) => {
+						return <HeaderItem 
+							key={i}
+							header={header} 
+							index={i} 
+							setShownItems={props.setShownItems}
+							shownItems={props.shownItems}
+						></HeaderItem>
+					})
+				}
+			</div>
 		</div>
 	);
 }
@@ -30,7 +37,12 @@ function HeaderItem(props) {
 	}
 
 	return (
-		<div onClick={handleOnClick} style={style} className="header-item">{props.header}</div>
+		<div 
+			onClick={handleOnClick} 
+			style={style} 
+			className="header-item">
+			{props.header}
+		</div>
 	);
 }
 
@@ -114,11 +126,20 @@ function TableItem(props) {
 			onDragStart={handleDragStart}
 			onDragLeave={handleDragLeave}
 			onDragOver={handleDragOver}>
-			{
-				props.rowItem.map((item, i) => {
-					return <Item key={i} item={item} index={i} shownItems={props.shownItems}></Item>
-				})
-			}
+
+			<div className="action">
+				<div className="action-btn">
+					<FontAwesomeIcon icon={faMinusCircle}></FontAwesomeIcon>
+				</div>
+			</div>
+			<div className="items">
+				{
+					props.rowItem.map((item, i) => {
+						return <Item key={i} item={item} index={i} shownItems={props.shownItems}></Item>
+					})
+				}
+			</div>
+
 		</div>
 	);
 }

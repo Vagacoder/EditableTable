@@ -2,12 +2,21 @@
 	.headers {
 		width: 100%;
 		display: flex;
-		justify-content: space-evenly;
 		height: 50px;
 
-		.item {
-			min-width: 100px;
-			text-justify: center;
+		.expand-items {
+			flex: 1;
+			min-width: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.items {
+			flex: 14;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
 		}
 	}
 
@@ -16,20 +25,40 @@
 
 		.table-item {
 			display: flex;
-			justify-content: space-evenly;
 			box-shadow: 2px 2px 5px lightgrey;
-			align-items: center;
 			margin-top: 10px;
 			margin-bottom: 10px;
 
-			.item {
-				min-width: 100px;
-				text-justify: center;
+			.items {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				flex: 14;
 
-				.tbl-itm-img {
-					margin: 10px;
+				.item {
+					min-width: 100px;
+					text-justify: center;
+	
+	
+					.tbl-itm-img {
+						margin: 10px;
+					}
 				}
 			}
+
+			.action {
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				flex: 1;
+
+				.action-btn {
+					height: 16px;
+					display: block;
+					margin: auto;
+				}
+			}
+
 		}
 	}
 }
