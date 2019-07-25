@@ -1,0 +1,45 @@
+.editable-table .headers {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 50px;
+}
+
+.editable-table .headers .item {
+  min-width: 100px;
+  text-justify: center;
+}
+
+.editable-table .table {
+  width: 100%;
+}
+
+.editable-table .table .table-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-shadow: 2px 2px 5px lightgrey;
+          box-shadow: 2px 2px 5px lightgrey;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.editable-table .table .table-item .item {
+  min-width: 100px;
+  text-justify: center;
+}
+
+.editable-table .table .table-item .item .tbl-itm-img {
+  margin: 10px;
+}
+/*# sourceMappingURL=EditableTable.css.map */

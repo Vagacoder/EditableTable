@@ -1,0 +1,35 @@
+.editable-table {
+	.headers {
+		width: 100%;
+		display: flex;
+		justify-content: space-evenly;
+		height: 50px;
+
+		.item {
+			min-width: 100px;
+			text-justify: center;
+		}
+	}
+
+	.table {
+		width: 100%;
+
+		.table-item {
+			display: flex;
+			justify-content: space-evenly;
+			box-shadow: 2px 2px 5px lightgrey;
+			align-items: center;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			.item {
+				min-width: 100px;
+				text-justify: center;
+
+				.tbl-itm-img {
+					margin: 10px;
+				}
+			}
+		}
+	}
+}
